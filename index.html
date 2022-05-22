@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Meta tags & title /-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>V puzzle</title>
+	
+    
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
+	
+	<!--js-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	
+	<style>
+        body {margin:0;padding:0;background:#eee;}
+        p {margin:0;}
+        h1 {text-align: center;letter-spacing: 10px;}
+        article {display:flex;justify-content: space-between;width:1600px;}
+        
+        .draggable {position:absolute;z-index: 99}
+        
+        #gallery_wrapper {display:flex;flex-wrap: wrap;justify-content: space-between;width:831px;opacity:.5;}
+        #gallery_wrapper div p img {vertical-align: bottom;}
+    </style>
+    
+    <script>
+        alert("이 페이지는 PC에 최적화 되어 있습니다. 모바일에서는 기능을 하지 않습니다.");
+    </script>
+
+</head>
+<body>
+
+<h1>Let's make a puzzle of V</h1>
+
+<article>
+    <div id="draggable_wrapper">
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece1.jpg" alt=""></p>
+        </div>
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece2.jpg" alt=""></p>
+        </div>
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece3.jpg" alt=""></p>
+        </div>
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece4.jpg" alt=""></p>
+        </div>
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece5.jpg" alt=""></p>
+        </div>
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece6.jpg" alt=""></p>
+        </div>
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece7.jpg" alt=""></p>
+        </div>
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece8.jpg" alt=""></p>
+        </div>
+        <div class="draggable ui-widget-content">
+            <p><img src="img/piece9.jpg" alt=""></p>
+        </div>
+    </div>
+
+
+    <div id="gallery_wrapper">
+        <div><p><img src="img/piece1.jpg" alt=""></p></div>
+        <div><p><img src="img/piece2.jpg" alt=""></p></div>
+        <div><p><img src="img/piece3.jpg" alt=""></p></div>
+        <div><p><img src="img/piece4.jpg" alt=""></p></div>
+        <div><p><img src="img/piece5.jpg" alt=""></p></div>
+        <div><p><img src="img/piece6.jpg" alt=""></p></div>
+        <div><p><img src="img/piece7.jpg" alt=""></p></div>
+        <div><p><img src="img/piece8.jpg" alt=""></p></div>
+        <div><p><img src="img/piece9.jpg" alt=""></p></div>
+    </div>
+</article>
+
+
+
+<script>
+    $(document).ready(function(){
+        var piece = $('#draggable_wrapper > div');
+        var gallery = $('#gallery_wrapper > div');
+        
+        randomPosition();
+        
+        function randomPosition(){
+            piece.each(function(){
+                var tl = Math.random() * 500;
+                var tt = Math.random() * 600;
+                
+                $(this).css({left:tl, top:tt});
+            });
+        }
+        
+        piece.draggable({
+            stop:onStop
+        });
+
+        function onStop(){
+            console.log('stop');
+        }
+        
+        function onStop(){
+            var tg = $(this);
+            var id = tg.index();
+            var ol = tg.offset().left;
+            var ot = tg.offset().top;
+            
+            var galleryPiece = gallery.eq(id);
+            var w = galleryPiece.width();
+            var h = galleryPiece.height();
+            var tl = galleryPiece.offset().left;
+            var tt = galleryPiece.offset().top;
+            
+            var minLeft = tl - w;
+            var minTop = tt - h;
+            var maxLeft = tl + w;
+            var maxTop = tt + h;
+            
+            var count = 0;
+            var totalSize = gallery.size();
+            
+            if(ol > minLeft && ol < maxLeft && ot > minTop && ot < maxTop){
+                tg.draggable('destroy');
+                tg.animate({left:tl, top:tt}, 300, function(){
+                    count++;
+                    if(totalSize == count) {
+                        piece.remove();
+                        gallery.css({
+                        opacity:1,
+                        margin:0});
+                        
+                        alert('success!');
+                    }
+                });
+                
+                
+            }
+        }
+        
+    });
+</script>
+
+</body>
+</html>
