@@ -45,9 +45,6 @@ $(document).ready(function () {
       let maxLeft = pieceLeft + galleryWidth;
       let maxTop = pieceTop + galleryHeight;
 
-      let count = 0;
-      const totalSize = gallery.size(); //gallery 피스의 전체 개수(length)
-
       if (
         offsetLeft > minLeft &&
         offsetLeft < maxLeft &&
