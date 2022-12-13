@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #eee;
+}
+p {
+  margin: 0;
+}
+h1 {
+  text-align: center;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+}
+article {
+  display: none;
+  justify-content: space-between;
+  width: 1600px;
+}
+
+.draggable {
+  position: absolute;
+  z-index: 99;
+}
+
+#gallery_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 831px;
+  opacity: 0.5;
+}
+#gallery_wrapper div img {
+  vertical-align: bottom;
+}
+.btn-wrap {
+  margin: 4rem auto;
+  text-align: center;
+  width: 100%;
+}
+.btn-wrap #btn {
+  border: 2px solid purple;
+  background-color: purple;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 2em;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.btn-wrap #btn:hover {
+  color: purple;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    background-color: purple;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+  }
+  body::after {
+    content: "Sorry. Please access again from PC.";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: #fff;
+    font-size: 2em;
+    height: 100%;
+  }
+  h1,
+  article,
+  .btn-wrap {
+    display: none !important;
+  }
+}
