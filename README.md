@@ -2,7 +2,10 @@
 
 ## 설명
 
-used only jquery(javascript library).
+Used only jquery(javascript library).
+
+## Preview
+<img src="https://user-images.githubusercontent.com/97646713/209560576-fbeb1a2f-578d-4aa9-999e-a0a5a59012dd.png">
 
 ## log
 
